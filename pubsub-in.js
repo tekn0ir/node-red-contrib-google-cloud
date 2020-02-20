@@ -88,8 +88,9 @@ module.exports = function(RED) {
             message.ack();
         } // OnMessage
 
-
-        function OnClose() {
+        // Called when a new error is received from PubSub.
+        function OnError(error) {
+            node.error(`PubSub error: ${error}`);
             node.status(STATUS_DISCONNECTED);
             if (subscription) {
                 subscription.close();  // No longer receive messages.
@@ -98,8 +99,7 @@ module.exports = function(RED) {
                 subscription = null;
             }
             pubsub = null;
-        } // OnClose
-
+        } // OnError
 
         // We must have EITHER credentials or a keyFilename.  If neither are supplied, that
         // is an error.  If both are supplied, then credentials will be used.
@@ -119,7 +119,7 @@ module.exports = function(RED) {
         pubsub.subscription(options.subscription).get().then((data) => {
             subscription = data[0];
             subscription.on('message', OnMessage);
-            subscription.on('error',   OnClose);
+            subscription.on('error',   OnError);
             node.status(STATUS_CONNECTED);
         }).catch((reason) => {
             node.error(reason);
