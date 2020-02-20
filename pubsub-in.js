@@ -101,6 +101,18 @@ module.exports = function(RED) {
             pubsub = null;
         } // OnError
 
+        function OnClose() {
+            node.status(STATUS_DISCONNECTED);
+            if (subscription) {
+                subscription.close();  // No longer receive messages.
+                subscription.removeListener('message', OnMessage);
+                subscription.removeListener('error', OnError);
+                subscription = null;
+            }
+            pubsub = null;
+        } // OnClose
+
+
         // We must have EITHER credentials or a keyFilename.  If neither are supplied, that
         // is an error.  If both are supplied, then credentials will be used.
         if (credentials) {
