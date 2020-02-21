@@ -84,21 +84,24 @@ module.exports = function(RED) {
                 msg.payload = JSON.parse(RED.util.ensureString(message.data));
             }
 
-            node.send(msg);
-            message.ack();
+            try {
+                node.send(msg);
+                message.ack();
+            }
+            catch(e) {
+                if (e.details) {
+                    node.error(e.details);
+                } else {
+                    console.log(e);
+                }
+                OnClose();
+            }
         } // OnMessage
 
         // Called when a new error is received from PubSub.
         function OnError(error) {
             node.error(`PubSub error: ${error}`);
-            node.status(STATUS_DISCONNECTED);
-            if (subscription) {
-                subscription.close();  // No longer receive messages.
-                subscription.removeListener('message', OnMessage);
-                subscription.removeListener('error', OnError);
-                subscription = null;
-            }
-            pubsub = null;
+            OnClose();
         } // OnError
 
         function OnClose() {
