@@ -49,7 +49,7 @@ module.exports = function(RED) {
             credentials = GetCredentials(config.account);
         }
         const keyFilename = config.keyFilename;
-        const node = this;
+        var node = this;
         const fileName_options = config.filename.trim();
         const contentType_options = config.contentType.trim();
 

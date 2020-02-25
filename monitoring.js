@@ -30,7 +30,7 @@ module.exports = function(RED) {
             return JSON.parse(RED.nodes.getCredentials(node).account);
         }
 
-        const node = this;
+        var node = this;
         let metricServiceClient = null;
         let metricType = config.metricType;  // custom.googleapis.com/global/numeric_metric
         let projectId = config.projectId;

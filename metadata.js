@@ -31,7 +31,7 @@ module.exports = function(RED) {
 
     function CEMetaDataNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
 
         function Input(msg) {
     //

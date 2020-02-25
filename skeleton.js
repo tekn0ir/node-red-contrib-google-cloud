@@ -21,7 +21,7 @@ module.exports = function(RED) {
 
     function SkeletonNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
         node.log("I was started!");
 
         function Input(msg) {

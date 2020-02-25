@@ -39,7 +39,7 @@ module.exports = function(RED) {
 
         RED.nodes.createNode(this, config);  // Required by the Node-RED spec.
 
-        const node = this;
+        var node = this;
 
         let credentials = null;
         if (config.account) {

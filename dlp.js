@@ -31,7 +31,7 @@ module.exports = function(RED) {
 
     function DLPNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
         const inspectTemplateName = config.inspectTemplateName;  // The name of the inspection template to use.
         const projectId = config.projectId;
 

@@ -28,7 +28,7 @@ module.exports = function(RED) {
 
     function TranslateNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
         const projectId = config.projectId;
         const sourceLanguageCode = config.sourceLanguageCode;
         const targetLanguageCode = config.targetLanguageCode;

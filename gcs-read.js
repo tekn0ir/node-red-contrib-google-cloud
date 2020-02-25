@@ -47,7 +47,7 @@ module.exports = function(RED) {
 
         let storage;
         let credentials = null;
-        const node = this;
+        var node = this;
         if (config.account) {
             credentials = GetCredentials(config.account);
         }

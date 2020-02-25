@@ -38,7 +38,7 @@ module.exports = function(RED) {
 
     function FireStoreNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
         const staticQuery = config.query;
         const projectId = config.projectId;
 

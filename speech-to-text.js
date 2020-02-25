@@ -34,7 +34,7 @@ module.exports = function(RED) {
 
     function SpeechToTextNode(config) {
         RED.nodes.createNode(this, config);
-        const node = this;
+        var node = this;
         let speechClient = null;
         let credentials = null;
 

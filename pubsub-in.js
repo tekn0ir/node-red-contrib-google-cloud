@@ -54,7 +54,7 @@ module.exports = function(RED) {
 
         RED.nodes.createNode(this, config);
 
-        const node = this;
+        var node = this;
 
         let options = {};
 
